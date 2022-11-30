@@ -1,4 +1,4 @@
-from .models import Task
+from .models import Task, User
 from django.forms import ModelForm, TextInput, DateInput, Textarea
 
 
@@ -20,3 +20,25 @@ class TaskForm(ModelForm):
                 'class': 'form-control'
             })
         }
+
+class UserRegisterForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['nick', 'email', 'password']
+        widgets = {
+            'nick': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Ник нэйм'
+            }),
+            'email': TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Email'
+            }),
+            'password': TextInput(attrs={
+                'type': 'password',
+                'class': 'form-control',
+                'placeholder': 'Password'
+
+            })
+        }
+

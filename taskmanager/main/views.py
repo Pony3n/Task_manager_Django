@@ -24,7 +24,28 @@ def create_task(request):
     form = TaskForm()
     context = {
         'form': form,
-        'error': error
     }
     return render(request, 'main/create.html', context)
 
+def registration(request):
+    if request.method == 'POST':
+        user = UserRegisterForm(request.POST)
+        if user.is_valid():
+            user.save()
+            return redirect('home')
+        else:
+            error = 'Неправильные данные!'
+
+    user = UserRegisterForm()
+    context = {
+        'user': user,
+    }
+    return render(request, 'main/registration.html', context)
+
+def auth(request):
+    # if request.method == 'POST':
+    #     if user.is_valid():
+    #         return redirect('home')
+    for user in User.objects.all():
+        print(user.email)
+    return render(request, 'main/auth.html')

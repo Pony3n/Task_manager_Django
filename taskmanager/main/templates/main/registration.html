@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Страница регистрации
+{% endblock %}
+
+{% block content %}
+    <img class="mb-4" src="/static/main/img/thinker.jpg" alt="не попал" width="90" height="150">
+    <h1 class="h3 mb-3 fw-normal">Please register</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ user.nick}}<br>
+        {{ user.email }}<br>
+        {{ user.password }}<br>
+        <button type="submit" class="btn btn-success">Создать</button>
+        <span>{{ error }}</span>
+    </form>
+{% endblock %}
